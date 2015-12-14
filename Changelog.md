@@ -1,3 +1,6 @@
+## 2015.8.3 (release date: 2015-12-14)
+ * Updated to Salt version 2015.8.3
+
 ## 2015.8.1 (release date: 2015-10-13)
  * Now using Ubuntu 14.04 so minion can run under init system.
 

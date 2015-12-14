@@ -1,5 +1,5 @@
 NAME = itsamenathan/salt-minion
-VERSION = 2015.8.1
+VERSION = 2015.8.3
 
 .PHONY: all build test tag_latest release ssh
 
