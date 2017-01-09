@@ -1,18 +1,21 @@
 NAME = itsamenathan/salt-minion
-VERSION = 2015.8.3
+VERSION = 2016.11.1
 
-.PHONY: all build test tag_latest release ssh
+.PHONY: all build test tag_latest release
 
 all: build
 
 build:
+	docker build -t $(NAME):$(VERSION) .
+
+build_clean:
 	docker build -t $(NAME):$(VERSION) --rm --no-cache=true --pull=true .
 
 test:
 	docker run --link salt-master-test:salt --rm $(NAME):$(VERSION) salt-minion -ldebug
 
 tag_latest:
-	docker tag -f $(NAME):$(VERSION) $(NAME):latest
+	docker tag $(NAME):$(VERSION) $(NAME):latest
 
 release: tag_latest
 	@if ! docker images $(NAME) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(NAME) version $(VERSION) is not yet built. Please run 'make build'"; false; fi
